@@ -6,23 +6,25 @@ import java.util.Random;
 
 public class OvalPanel extends JPanel implements ActionListener {
     private int y = 650;
-    private int num = 0,num2=0;
+    private int num = 0, num2 = 0;
     private JButton[] buttons;
-    private int count=0;
+    private int count = 0;
 
     private Timer timer;
 
+
+
     public OvalPanel() {
-        //setLayout(new GridLayout(2,2));
+
         setLayout(null);
-        timer = new Timer(-100, new ActionListener() {
+        timer = new Timer(10, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 y--;
                 if (y < 0) {
                     y = 650;
                     num = generateRandomNumber();
-                    num2=getDigitSum(num);
+                    num2 = getDigitSum(num);
                     createButtons();
                 }
                 repaint();
@@ -30,30 +32,33 @@ public class OvalPanel extends JPanel implements ActionListener {
         });
         timer.start();
         num = generateRandomNumber();
-        num2=getDigitSum(num);
+        num2 = getDigitSum(num);
         createButtons();
+
     }
 
     private void createButtons() {
+
         removeAll();
         buttons = new JButton[3];
         for (int i = 0; i < buttons.length; i++) {
-            int randAnswer = (int)(Math.random() * 10) + 1;
+            int randAnswer = (int) (Math.random() * 10) + 1;
             while (randAnswer == num2) {
-                randAnswer = (int)(Math.random() * 10) + 1;
+                randAnswer = (int) (Math.random() * 10) + 1;
             }
             buttons[i] = new JButton("" + randAnswer);
             buttons[i].addActionListener(this);
-            buttons[i].setBounds(490 , 100+(i * 50), 80, 40); // Set the bounds of the button
+            buttons[i].setBounds(490, 100 + (i * 50), 80, 40); // Set the bounds of the button
             add(buttons[i]);
+            buttons[i].setFocusable(false);
         }
 
-        JLabel label = new JLabel("Score: "+count);
-        label.setBounds(0,0,100,100);
+        JLabel label = new JLabel("Score: " + count);
+        label.setBounds(5, 0, 100, 40);
         label.setVisible(true);
         add(label);
 
-        int correctIndex = (int)(Math.random() * 3);
+        int correctIndex = (int) (Math.random() * 3);
         buttons[correctIndex].setText("" + num2);
         validate();
     }
@@ -67,11 +72,26 @@ public class OvalPanel extends JPanel implements ActionListener {
         g.setFont(font);
         String numberString = String.format("%4d", num);
         g.drawString(numberString, 260, y + 45);
+        System.out.println(y);
+
+        //create a rectangle for collison
+        g.setColor(Color.BLACK);
+        g.fillRect(0,0,600,1);
+
+        //Check if the Ball intersects with the rectangle
+        Rectangle ovalBounds = new Rectangle(250, y, 70, 70);
+        Rectangle rectangleBounds = new Rectangle(0,0,600,1);
+
+        if(ovalBounds.intersects(rectangleBounds)){
+            timer.stop();
+            JOptionPane.showMessageDialog(null, "Time's Up!!!\nYour Final Score is: [ "+count+" ]");
+            System.exit(0);
+        }
     }
 
     private int generateRandomNumber() {
         Random rand = new Random();
-        return rand.nextInt(8999)+1000;
+        return rand.nextInt(8999) + 1000;
     }
 
     private int getDigitSum(int num) {
@@ -89,20 +109,25 @@ public class OvalPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JButton button = (JButton)e.getSource();
+        JButton button = (JButton) e.getSource();
         String buttonText = button.getText();
         int selectedAnswer = Integer.parseInt(buttonText);
+
         if (selectedAnswer == num2) {
-            //JOptionPane.showMessageDialog(null, "Correct!");
             count++;
-            y=650;
+            y = 650;
             timer.start();
             num = generateRandomNumber();
-            num2=getDigitSum(num);
+            num2 = getDigitSum(num);
             createButtons();
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Incorrect.");
         }
+
+     else
+    {
+        timer.stop();
+        JOptionPane.showMessageDialog(null, "GAME OVER!!!\nYour Final Score is: [ "+count+" ]");
+        System.exit(0);
+
     }
+}
 }
