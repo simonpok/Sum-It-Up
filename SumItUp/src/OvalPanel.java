@@ -15,12 +15,22 @@ public class OvalPanel extends JPanel implements ActionListener {
     private Timer timer;
 
     private int speed =1;
+    private Image backgroundImage;
+    private JLabel scoreLabel;
 
 
 
     public OvalPanel() {
 
+        backgroundImage= new ImageIcon("Background2.png").getImage();
+
         setLayout(null);
+
+        //need to fix this Label part
+//        scoreLabel = new JLabel("Score: " + count);
+//        scoreLabel.setBounds(5, 0, 100, 40);
+//        scoreLabel.setVisible(true);
+//        add(scoreLabel);
         timer = new Timer(10, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -57,10 +67,7 @@ public class OvalPanel extends JPanel implements ActionListener {
             buttons[i].setFocusable(false);
         }
 
-        JLabel label = new JLabel("Score: " + count);
-        label.setBounds(5, 0, 100, 40);
-        label.setVisible(true);
-        add(label);
+
 
         int correctIndex = (int) (Math.random() * 3);
         buttons[correctIndex].setText("" + num2);
@@ -69,7 +76,11 @@ public class OvalPanel extends JPanel implements ActionListener {
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.setColor(Color.RED);
+        //Draw the background
+        g.drawImage(backgroundImage,0,0,600,800,null);
+
+        //Draw the Oval
+        g.setColor(Color.CYAN);
         g.fillOval(250, y, 70, 70);
         g.setColor(Color.BLACK);
         Font font = new Font("Arial", Font.BOLD, 22);
@@ -77,6 +88,8 @@ public class OvalPanel extends JPanel implements ActionListener {
         String numberString = String.format("%4d", num);
         g.drawString(numberString, 260, y + 45);
         //System.out.println(y);
+
+
 
         //create a rectangle for collision
         g.setColor(Color.BLACK);
