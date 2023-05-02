@@ -1,3 +1,5 @@
+import org.w3c.dom.ls.LSOutput;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,6 +14,8 @@ public class OvalPanel extends JPanel implements ActionListener {
 
     private Timer timer;
 
+    private int speed =1;
+
 
 
     public OvalPanel() {
@@ -20,7 +24,7 @@ public class OvalPanel extends JPanel implements ActionListener {
         timer = new Timer(10, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                y--;
+                y-=speed;
                 if (y < 0) {
                     y = 650;
                     num = generateRandomNumber();
@@ -72,9 +76,9 @@ public class OvalPanel extends JPanel implements ActionListener {
         g.setFont(font);
         String numberString = String.format("%4d", num);
         g.drawString(numberString, 260, y + 45);
-        System.out.println(y);
+        //System.out.println(y);
 
-        //create a rectangle for collison
+        //create a rectangle for collision
         g.setColor(Color.BLACK);
         g.fillRect(0,0,600,1);
 
@@ -129,5 +133,11 @@ public class OvalPanel extends JPanel implements ActionListener {
         System.exit(0);
 
     }
+     if (count %10==0)
+     {
+         speed++;
+     }
+        System.out.println(speed);
 }
+
 }
