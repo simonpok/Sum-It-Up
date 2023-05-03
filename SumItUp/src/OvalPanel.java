@@ -26,11 +26,7 @@ public class OvalPanel extends JPanel implements ActionListener {
 
         setLayout(null);
 
-        //need to fix this Label part
-//        scoreLabel = new JLabel("Score: " + count);
-//        scoreLabel.setBounds(5, 0, 100, 40);
-//        scoreLabel.setVisible(true);
-//        add(scoreLabel);
+
         timer = new Timer(10, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -82,7 +78,7 @@ public class OvalPanel extends JPanel implements ActionListener {
         //Draw the Oval
         g.setColor(Color.CYAN);
         g.fillOval(250, y, 70, 70);
-        g.setColor(Color.BLACK);
+        g.setColor(Color.black);
         Font font = new Font("Arial", Font.BOLD, 22);
         g.setFont(font);
         String numberString = String.format("%4d", num);
@@ -104,6 +100,15 @@ public class OvalPanel extends JPanel implements ActionListener {
             JOptionPane.showMessageDialog(null, "Time's Up!!!\nYour Final Score is: [ "+count+" ]");
             System.exit(0);
         }
+        Font font1 = new Font("Arial", Font.PLAIN,25);
+        
+        //need to fix this Label part
+        scoreLabel = new JLabel("Score: " + count);
+        scoreLabel.setBounds(5, 0, 100, 40);
+        scoreLabel.setVisible(true);
+        add(scoreLabel);
+        scoreLabel.setForeground(Color.white);
+        scoreLabel.setFont(font1);
     }
 
     private int generateRandomNumber() {
