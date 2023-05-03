@@ -10,6 +10,7 @@ public class Main {
         frame.setSize(600,800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
+        frame.setLocationRelativeTo(null);
         frame.setResizable(false);
 
         //Create a Panel

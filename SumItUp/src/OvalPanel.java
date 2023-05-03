@@ -14,7 +14,7 @@ public class OvalPanel extends JPanel implements ActionListener {
 
     private Timer timer;
 
-    private int speed =1;
+    private double speed =1.0;
     private Image backgroundImage;
     private JLabel scoreLabel;
 
@@ -104,7 +104,7 @@ public class OvalPanel extends JPanel implements ActionListener {
         
         //need to fix this Label part
         scoreLabel = new JLabel("Score: " + count);
-        scoreLabel.setBounds(5, 0, 100, 40);
+        scoreLabel.setBounds(5, 0, 120, 40);
         scoreLabel.setVisible(true);
         add(scoreLabel);
         scoreLabel.setForeground(Color.white);
@@ -153,7 +153,7 @@ public class OvalPanel extends JPanel implements ActionListener {
     }
      if (count %10==0)
      {
-         speed++;
+         speed+=0.5;
      }
         System.out.println(speed);
 }

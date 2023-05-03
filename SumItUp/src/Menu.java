@@ -10,6 +10,7 @@ public class Menu extends JFrame {
         setTitle("Menu");
         setSize(400, 300);
         setLocationRelativeTo(null);
+        setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
 
