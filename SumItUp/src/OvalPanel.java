@@ -61,10 +61,9 @@ public class OvalPanel extends JPanel implements ActionListener {
             buttons[i].setBounds(490, 100 + (i * 50), 80, 40); // Set the bounds of the button
             add(buttons[i]);
             buttons[i].setFocusable(false);
+            buttons[i].setBackground(Color.GRAY);
+
         }
-
-
-
         int correctIndex = (int) (Math.random() * 3);
         buttons[correctIndex].setText("" + num2);
         validate();
