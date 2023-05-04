@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import java.util.Random;
 
 public class OvalPanel extends JPanel implements ActionListener {
@@ -161,13 +162,48 @@ public class OvalPanel extends JPanel implements ActionListener {
      else
     {
         timer.stop();
-        JOptionPane.showMessageDialog(null, "GAME OVER!!!\nYour Final Score is: [ "+count+" ]");
+
+
+        String text2 = scoreLabel.getText();
+        try{
+            FileOutputStream outputStream = new FileOutputStream("score.txt");
+            outputStream.write(text2.getBytes());
+            outputStream.close();
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        // read the contents of score.txt
+//        String scoreStr = "";
+//        try {
+//            BufferedReader reader = new BufferedReader(new FileReader("score.txt"));
+//            scoreStr = reader.readLine();
+//            reader.close();
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
+
+// read the contents of name.txt
+        String nameStr = "";
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("name.txt"));
+            nameStr = reader.readLine();
+            reader.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+// display the name and score in the message dialog
+        JOptionPane.showMessageDialog(null, "GAME OVER!!!\nPlayer Name: "
+                + nameStr + "\nFinal Score: " +count);
+
         System.exit(0);
 
     }
      if (count %10==0)
      {
-         speed+=0.5;
+         speed+=1.0;
      }
         System.out.println(speed);
 

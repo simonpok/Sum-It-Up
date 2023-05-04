@@ -1,17 +1,23 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class NameClass {
     public static void main(String[] args) {
 
         X obj = new X();
-
+        obj.x_get();
+//        ScoreBoard score =new ScoreBoard();
+//        score.display(obj);
     }
 }
 
 class X extends JFrame{
-    public X()
+    JTextField text = new JTextField();
+
+    public void x_get()
     {
         JButton button = new JButton("JUMP IN");
         button.setBounds(250,450,100,30);
@@ -20,11 +26,22 @@ class X extends JFrame{
         label.setBounds(120,400,100,30);
 
 
-        JTextField text = new JTextField();
+
         text.setBounds(230,400,150,30);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                //To print out the text of JTextField when button is Clicked
+               String text1 = text.getText();
+               try{
+                   FileOutputStream outputStream = new FileOutputStream("name.txt");
+                   outputStream.write(text1.getBytes());
+                   outputStream.close();
+                   System.out.println("Text Saved");
+               }catch(IOException ex){
+                   ex.printStackTrace();
+               }
                 System.out.println("Button Clicked!");
 
                 Main.main(new String[0]);  //call the main method on the Main class and run it.
