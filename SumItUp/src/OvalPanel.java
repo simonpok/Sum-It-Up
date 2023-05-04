@@ -169,6 +169,7 @@ public class OvalPanel extends JPanel implements ActionListener {
             FileOutputStream outputStream = new FileOutputStream("score.txt");
             outputStream.write(text2.getBytes());
             outputStream.close();
+            System.out.println("Score Saved");
 
         } catch (IOException ex) {
             ex.printStackTrace();
