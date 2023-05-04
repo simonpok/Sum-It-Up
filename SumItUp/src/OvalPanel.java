@@ -1,5 +1,3 @@
-import org.w3c.dom.ls.LSOutput;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,8 +15,6 @@ public class OvalPanel extends JPanel implements ActionListener {
     private double speed =1.0;
     private Image backgroundImage;
     private JLabel scoreLabel;
-
-
 
     public OvalPanel() {
 
@@ -49,23 +45,42 @@ public class OvalPanel extends JPanel implements ActionListener {
 
     private void createButtons() {
 
+        //Remove all existing buttons
         removeAll();
+
+        //create an array of 3 buttons
         buttons = new JButton[3];
+
+        //Generate random answers for each buttons
         for (int i = 0; i < buttons.length; i++) {
+
+            //Generate a random number between 1 and 10
             int randAnswer = (int) (Math.random() * 10) + 1;
+
+            //making sure the random number is not the same as num2
             while (randAnswer == num2) {
                 randAnswer = (int) (Math.random() * 10) + 1;
             }
+
+            //create a new button with the random answer
             buttons[i] = new JButton("" + randAnswer);
+
+            //Add an action listener to the button (this refers to the current object)
             buttons[i].addActionListener(this);
-            buttons[i].setBounds(490, 100 + (i * 50), 80, 40); // Set the bounds of the button
+
+            //set the bounds of the button (x,y,width, height)
+            buttons[i].setBounds(490, 100 + (i * 50), 80, 40);
+
+            //adding and managing buttons
             add(buttons[i]);
             buttons[i].setFocusable(false);
             buttons[i].setBackground(Color.GRAY);
 
         }
+         //set the text of the random button to the correct answer
         int correctIndex = (int) (Math.random() * 3);
         buttons[correctIndex].setText("" + num2);
+
         validate();
     }
 
@@ -155,6 +170,7 @@ public class OvalPanel extends JPanel implements ActionListener {
          speed+=0.5;
      }
         System.out.println(speed);
+
 }
 
 }
