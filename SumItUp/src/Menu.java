@@ -1,38 +1,62 @@
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
+import java.awt.event.*;
 
-public class Menu extends JFrame {
-    private JButton newGameBtn, loadGameBtn, exitBtn;
-    private JLabel titleLabel;
+public class Menu extends JFrame implements ActionListener{
+    private JButton playButton, exitButton, tutorialButton;
+    
+    public Menu(){
+        JFrame frame = new JFrame();
+        frame.setTitle("Game Menu");
+        frame.setSize(600, 800);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
 
-    public Menu() {
+        JButton playButton = new JButton("Play");
+        playButton.setBounds(200, 100, 400,50);
+        playButton.setLocation(100,200);
+        playButton.setVisible(true);
+        frame.add(playButton);
 
-        setTitle("Menu");
-        setSize(400, 300);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
+        JButton exitButton = new JButton("Exit");
+        exitButton.setBounds(200, 400, 400,50);
+        exitButton.setLocation(100,280);
+        exitButton.setVisible(true);
+        
+        frame.add(exitButton);
 
-        titleLabel = new JLabel("Welcome", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 30));
-        newGameBtn = new JButton("New Game");
-        loadGameBtn = new JButton("Load Game");
-        exitBtn = new JButton("Exit");
+        JButton tutorialButton = new JButton("tutorial");
+        tutorialButton.setBounds(600, 10, 80,50);
+        tutorialButton.setLocation(500,10);
+        tutorialButton.setVisible(true);
+        frame.add(tutorialButton);
 
-        setLayout(new BorderLayout());
-        add(titleLabel, BorderLayout.NORTH);
-
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(3, 1));
-        buttonPanel.add(newGameBtn);
-        buttonPanel.add(loadGameBtn);
-        buttonPanel.add(exitBtn);
-        add(buttonPanel, BorderLayout.CENTER);
+        playButton.addActionListener(this);
+        exitButton.addActionListener(this);
+        tutorialButton.addActionListener(this);
 
         setVisible(true);
+        
+}
+    public void actionPerformed(ActionEvent  e){
+            if (e.getSource() == playButton){
+                getContentPane().removeAll();
+                // Main main = new Main();
+                JFrame frame = new JFrame();
+                getContentPane().add(frame);
+                pack();
+                validate();
+            }  
+            //  exitButton.addActionListener(e ->{
+            //      System.exit(0);
+            //  });
+            else if (e.getSource() == exitButton){
+                System.exit(0);
+            }
     }
 
     public static void main(String[] args) {
-        Menu menu = new Menu();
+    Menu menu = new Menu();
     }
 }
+
