@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.Random;
 
+//import static sun.java2d.d3d.D3DSurfaceData.dispose;
+
 public class OvalPanel extends JPanel implements ActionListener {
     private int y = 650;
     private int num = 0, num2 = 0;
@@ -175,15 +177,7 @@ public class OvalPanel extends JPanel implements ActionListener {
             ex.printStackTrace();
         }
 
-        // read the contents of score.txt
-//        String scoreStr = "";
-//        try {
-//            BufferedReader reader = new BufferedReader(new FileReader("score.txt"));
-//            scoreStr = reader.readLine();
-//            reader.close();
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//        }
+
 
 // read the contents of name.txt
         String nameStr = "";
@@ -196,10 +190,17 @@ public class OvalPanel extends JPanel implements ActionListener {
         }
 
 // display the name and score in the message dialog
-        JOptionPane.showMessageDialog(null, "GAME OVER!!!\nPlayer Name: "
+       JOptionPane.showMessageDialog(null, "GAME OVER!!!\nPlayer Name: "
                 + nameStr + "\nFinal Score: " +count);
 
+
+        Y obj = new Y();
+         obj.y_get();
+         setVisible(true);
         System.exit(0);
+
+
+
 
     }
      if (count %10==0)

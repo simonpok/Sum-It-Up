@@ -42,6 +42,7 @@ class X extends JFrame{
                }catch(IOException ex){
                    ex.printStackTrace();
                }
+
                 System.out.println("Button Clicked!");
 
                 Main.main(new String[0]);  //call the main method on the Main class and run it.
