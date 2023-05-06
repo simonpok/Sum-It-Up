@@ -2,7 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import java.util.Random;
+
+//import static sun.java2d.d3d.D3DSurfaceData.dispose;
 
 public class OvalPanel extends JPanel implements ActionListener {
     private int y = 650;
@@ -12,15 +15,21 @@ public class OvalPanel extends JPanel implements ActionListener {
 
     private Timer timer;
 
-
+    private double speed =1.0;
+    private Image backgroundImage;
+    private JLabel scoreLabel;
 
     public OvalPanel() {
 
+        backgroundImage= new ImageIcon("Background2.png").getImage();
+
         setLayout(null);
+
+
         timer = new Timer(10, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                y--;
+                y-=speed;
                 if (y < 0) {
                     y = 650;
                     num = generateRandomNumber();
@@ -39,42 +48,63 @@ public class OvalPanel extends JPanel implements ActionListener {
 
     private void createButtons() {
 
+        //Remove all existing buttons
         removeAll();
+
+        //create an array of 3 buttons
         buttons = new JButton[3];
+
+        //Generate random answers for each buttons
         for (int i = 0; i < buttons.length; i++) {
+
+            //Generate a random number between 1 and 10
             int randAnswer = (int) (Math.random() * 10) + 1;
+
+            //making sure the random number is not the same as num2
             while (randAnswer == num2) {
                 randAnswer = (int) (Math.random() * 10) + 1;
             }
+
+            //create a new button with the random answer
             buttons[i] = new JButton("" + randAnswer);
+
+            //Add an action listener to the button (this refers to the current object)
             buttons[i].addActionListener(this);
-            buttons[i].setBounds(490, 100 + (i * 50), 80, 40); // Set the bounds of the button
+
+            //set the bounds of the button (x,y,width, height)
+            buttons[i].setBounds(490, 100 + (i * 50), 80, 40);
+
+            //adding and managing buttons
             add(buttons[i]);
             buttons[i].setFocusable(false);
+            buttons[i].setBackground(Color.GRAY);
+
         }
-
-        JLabel label = new JLabel("Score: " + count);
-        label.setBounds(5, 0, 100, 40);
-        label.setVisible(true);
-        add(label);
-
+         //set the text of the random button to the correct answer
         int correctIndex = (int) (Math.random() * 3);
         buttons[correctIndex].setText("" + num2);
+
         validate();
     }
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.setColor(Color.RED);
+        //Draw the background
+        g.drawImage(backgroundImage,0,0,600,800,null);
+
+        //Draw the Oval
+        g.setColor(Color.CYAN);
         g.fillOval(250, y, 70, 70);
-        g.setColor(Color.BLACK);
+        g.setColor(Color.black);
         Font font = new Font("Arial", Font.BOLD, 22);
         g.setFont(font);
         String numberString = String.format("%4d", num);
         g.drawString(numberString, 260, y + 45);
-        System.out.println(y);
+        //System.out.println(y);
 
-        //create a rectangle for collison
+
+
+        //create a rectangle for collision
         g.setColor(Color.BLACK);
         g.fillRect(0,0,600,1);
 
@@ -87,6 +117,15 @@ public class OvalPanel extends JPanel implements ActionListener {
             JOptionPane.showMessageDialog(null, "Time's Up!!!\nYour Final Score is: [ "+count+" ]");
             System.exit(0);
         }
+        Font font1 = new Font("Arial", Font.PLAIN,25);
+        
+        //need to fix this Label part
+        scoreLabel = new JLabel("Score: " + count);
+        scoreLabel.setBounds(5, 0, 120, 40);
+        scoreLabel.setVisible(true);
+        add(scoreLabel);
+        scoreLabel.setForeground(Color.white);
+        scoreLabel.setFont(font1);
     }
 
     private int generateRandomNumber() {
@@ -125,9 +164,51 @@ public class OvalPanel extends JPanel implements ActionListener {
      else
     {
         timer.stop();
-        JOptionPane.showMessageDialog(null, "GAME OVER!!!\nYour Final Score is: [ "+count+" ]");
+
+
+        String text2 = scoreLabel.getText();
+        try{
+            FileOutputStream outputStream = new FileOutputStream("score.txt");
+            outputStream.write(text2.getBytes());
+            outputStream.close();
+            System.out.println("Score Saved");
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+
+
+// read the contents of name.txt
+        String nameStr = "";
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("name.txt"));
+            nameStr = reader.readLine();
+            reader.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+// display the name and score in the message dialog
+       JOptionPane.showMessageDialog(null, "GAME OVER!!!\nPlayer Name: "
+                + nameStr + "\nFinal Score: " +count);
+
+
+        Y obj = new Y();
+         obj.y_get();
+         setVisible(true);
         System.exit(0);
 
+
+
+
     }
+     if (count %10==0)
+     {
+         speed+=1.0;
+     }
+        System.out.println(speed);
+
 }
+
 }

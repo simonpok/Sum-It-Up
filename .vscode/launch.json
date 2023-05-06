@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MenuFrame",
+            "request": "launch",
+            "mainClass": "MenuFrame",
+            "projectName": "Sum-It-Up-1_5cae30cb"
+        },
+        {
+            "type": "java",
+            "name": "MainFrame",
+            "request": "launch",
+            "mainClass": "MainFrame",
+            "projectName": "Sum-It-Up-1_5cae30cb"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
