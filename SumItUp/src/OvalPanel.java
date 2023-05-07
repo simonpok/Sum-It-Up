@@ -189,9 +189,10 @@ public class OvalPanel extends JPanel implements ActionListener {
             ex.printStackTrace();
         }
 
-//        Y obj = new Y();
-//        obj.y_get();
-//       setVisible(true);
+        Y obj = new Y();
+        obj.y_get();
+       setVisible(true);
+       add(obj);
 
 
         // display the name and score in the message dialog

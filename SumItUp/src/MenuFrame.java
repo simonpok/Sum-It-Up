@@ -43,16 +43,23 @@ public class MenuFrame extends JFrame implements ActionListener{
                 frame.setLocationRelativeTo(null);
                 frame.setResizable(false);
 
-                OvalPanel ovalpanel = new OvalPanel();
-                ovalpanel.setBounds(0, 0, 600, 800);
-                ovalpanel.setBackground(Color.CYAN);
-                frame.add(ovalpanel);
+//                OvalPanel ovalpanel = new OvalPanel();
+//                ovalpanel.setBounds(0, 0, 600, 800);
+//                ovalpanel.setBackground(Color.CYAN);
+//                frame.add(ovalpanel);
+
+
+                X obj = new X();
+                obj.x_get();
+                frame.add(obj);
+
 
 
                 frame.setVisible(true);
 
             // Close the current frame
-                this.dispose();
+                //this.dispose();
+                System.exit(0);
             }
             else if(e.getSource() == exitButton){
                 System.exit(0);
