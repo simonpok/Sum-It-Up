@@ -51,6 +51,7 @@ class X extends JFrame{
             }
         });
 
+
         setLayout(null);
         setVisible(true);
         setSize(600,800);

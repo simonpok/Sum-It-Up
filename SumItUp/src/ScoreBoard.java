@@ -3,15 +3,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-//public class ScoreBoard  {
-//
-//    public static void main(String[] args){
-//        Y obj = new Y();
-//        obj.y_get();
-//
-//
-//    }
-//}
+public class ScoreBoard  {
+
+        public static void main(String[] args){
+        Y obj = new Y();
+        obj.y_get();
+    }
+}
 
 class Y extends JFrame{
 
@@ -52,6 +50,7 @@ class Y extends JFrame{
         add(label1);
         setLocationRelativeTo(null);
         setResizable(false);
+        //toFront();
     }
 }
 
