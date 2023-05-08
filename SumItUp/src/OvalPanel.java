@@ -110,20 +110,54 @@ public class OvalPanel extends JPanel implements ActionListener {
         Rectangle ovalBounds = new Rectangle(250, y, 70, 70);
         Rectangle rectangleBounds = new Rectangle(0,0,600,1);
 
-        if(ovalBounds.intersects(rectangleBounds)){
-            timer.stop();
-            JOptionPane.showMessageDialog(null, "Time's Up!!!\nYour Final Score is: [ "+count+" ]");
-            System.exit(0);
-        }
+
         Font font1 = new Font("Arial", Font.PLAIN,25);
-        
-        //need to fix this Label part
+        //Score Label
         scoreLabel = new JLabel("Score: " + count);
         scoreLabel.setBounds(5, 0, 120, 40);
         scoreLabel.setVisible(true);
         add(scoreLabel);
         scoreLabel.setForeground(Color.white);
         scoreLabel.setFont(font1);
+
+        if(ovalBounds.intersects(rectangleBounds)){
+
+            y=10;
+            timer.stop();
+
+
+
+            String text2 = scoreLabel.getText();
+            try{
+                FileOutputStream outputStream = new FileOutputStream("score.txt");
+                outputStream.write(text2.getBytes());
+                outputStream.close();
+                System.out.println("Score Saved");
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+
+
+// read the contents of name.txt
+            String nameStr = "";
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader("name.txt"));
+                nameStr = reader.readLine();
+                reader.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+            Y obj = new Y();
+            obj.y_get();
+
+            //System.exit(0);
+        }
+
+        
+
     }
 
     private int generateRandomNumber() {
