@@ -20,11 +20,7 @@ public class Main {
         ovalpanel.setBackground(Color.CYAN);
         frame.add(ovalpanel);
 
-
-
-
-
-
+        
         frame.setVisible(true);
 
     }
