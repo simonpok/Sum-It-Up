@@ -5,8 +5,6 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.Random;
 
-//import static sun.java2d.d3d.D3DSurfaceData.dispose;
-
 public class OvalPanel extends JPanel implements ActionListener {
     private int y = 650;
     private int num = 0, num2 = 0;
@@ -191,16 +189,16 @@ public class OvalPanel extends JPanel implements ActionListener {
 
         Y obj = new Y();
         obj.y_get();
-       setVisible(true);
-       add(obj);
+
+
 
 
         // display the name and score in the message dialog
-       JOptionPane.showMessageDialog(null, "GAME OVER!!!\nPlayer Name: "
-                + nameStr + "\nFinal Score: " +count);
+       //JOptionPane.showMessageDialog(null, "GAME OVER!!!\nPlayer Name: "
+         //       + nameStr + "\nFinal Score: " +count);
 
 
-         System.exit(0);
+//         System.exit(0);
 
 
 

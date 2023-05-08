@@ -1,0 +1,11 @@
+                                                  Welcome to Sum It Up!
+
+The objective of the game is to select the correct answer from three options before the Ball reaches the top of the screen. The Ball contains a 4-digit number, and the correct answer is the sum of its digits reduced to a single digit.
+
+For example, if the number is 2489, the sum of its digits is 2+4+8+9 = 23, which is a two-digit number. The answer would then be 2+3 = 5.
+
+If you select the correct answer before the ball reaches the top, your score increases by one and New 4 digit number will be generated. If you select the wrong answer or the ball reaches the top, the game ends, and your final score is displayed.
+
+Every time your score reaches a multiple of 10, the speed of the ball increases. At 10 points, the speed increases by 1x, and at 20 points, it increases by 2x and so on..
+
+                                 Good luck and have fun playing Sum It Up!

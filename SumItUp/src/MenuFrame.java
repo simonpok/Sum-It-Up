@@ -3,18 +3,21 @@ import java.awt.*;
 import java.awt.event.*;
 public class MenuFrame extends JFrame implements ActionListener{
     private JButton playButton, exitButton, tutorialButton;
-    
+
     public MenuFrame(){
 
         playButton = new JButton("Play");
         playButton.setSize(200,300);
         playButton.addActionListener(this);
+        playButton.setFocusable(false);
 
-        exitButton = new JButton("Exit");
+        exitButton = new JButton("Tutorial");
         exitButton.addActionListener(this);
+        exitButton.setFocusable(false);
 
-        tutorialButton = new JButton("Tutorial");
+        tutorialButton = new JButton("Exit");
         tutorialButton.addActionListener(this);
+        tutorialButton.setFocusable(false);
 
         JPanel panel = new JPanel();
         panel.setSize(400, 800);
@@ -26,7 +29,7 @@ public class MenuFrame extends JFrame implements ActionListener{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600,800);
         this.setTitle("Menu");
-
+        this.setLocationRelativeTo(null);
         setVisible(true);
         
 }
@@ -35,38 +38,35 @@ public class MenuFrame extends JFrame implements ActionListener{
 
             if(e.getSource() == playButton){
                 JFrame frame = new JFrame("SumItUp");
-                ImageIcon icon = new ImageIcon("favicon.png");
+                ImageIcon icon = new ImageIcon("mygame.png");
                 frame.setIconImage(icon.getImage());
                 frame.setSize(600, 800);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setLayout(null);
-                frame.setLocationRelativeTo(null);
+
                 frame.setResizable(false);
 
-//                OvalPanel ovalpanel = new OvalPanel();
-//                ovalpanel.setBounds(0, 0, 600, 800);
-//                ovalpanel.setBackground(Color.CYAN);
-//                frame.add(ovalpanel);
 
 
+                //Opens NameClass Frame
                 X obj = new X();
                 obj.x_get();
-                frame.add(obj);
+
+                // Close the current frame
+                dispose();
 
 
-
-                frame.setVisible(true);
-
-            // Close the current frame
-                //this.dispose();
-                System.exit(0);
-            }
-            else if(e.getSource() == exitButton){
-                System.exit(0);
             }
             else if(e.getSource() == tutorialButton){
+                System.exit(0);
+            }
+            else if(e.getSource() ==  exitButton){
                 //code for tutorial 
                 System.out.println("Tutorial");
+
+                Z object = new Z();
+                object.z_get();
+                dispose();
             }
     }
 public static void main(String[] args){
