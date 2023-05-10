@@ -30,6 +30,7 @@ class Z extends JFrame {
         textArea.setBounds(50, 150, 500, 400);
         add(textArea);
 
+        //Read the Paragraph of the Tutorial.txt file and display in JTextArea
         try {
             BufferedReader reader = new BufferedReader(new FileReader("Tutorial.txt"));
             String line = reader.readLine();

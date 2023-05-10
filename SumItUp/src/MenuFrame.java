@@ -6,6 +6,8 @@ public class MenuFrame extends JFrame implements ActionListener{
 
     public MenuFrame(){
 
+        //Created 3 buttons for MenuScreen Play, Tutorial and Exit
+
         playButton = new JButton("Play");
         playButton.setSize(200,300);
         playButton.addActionListener(this);
@@ -57,9 +59,13 @@ public class MenuFrame extends JFrame implements ActionListener{
 
 
             }
+
+            //exit the running Process when exit button is clicked
             else if(e.getSource() == tutorialButton){
                 System.exit(0);
             }
+
+            //Opens the rules of the game when tutorial button is clicked
             else if(e.getSource() ==  exitButton){
                 //code for tutorial 
                 System.out.println("Tutorial");
