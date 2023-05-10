@@ -127,7 +127,7 @@ public class OvalPanel extends JPanel implements ActionListener {
 
 
 
-            String text2 = scoreLabel.getText();
+            String text2 = Integer.toString(count);
             try{
                 FileOutputStream outputStream = new FileOutputStream("score.txt");
                 outputStream.write(text2.getBytes());
