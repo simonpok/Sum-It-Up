@@ -1,13 +1,10 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 public class MenuFrame extends JFrame implements ActionListener{
     private JButton playButton, exitButton, tutorialButton;
 
     public MenuFrame(){
-
-        //Created 3 buttons for MenuScreen Play, Tutorial and Exit
-
+        
         playButton = new JButton("Play");
         playButton.setSize(200,300);
         playButton.addActionListener(this);
@@ -23,15 +20,18 @@ public class MenuFrame extends JFrame implements ActionListener{
 
         JPanel panel = new JPanel();
         panel.setSize(400, 800);
-        panel.setLayout(new GridLayout(3,1));
+        //panel.setLayout(new GridLayout(3,1));
         panel.add(playButton);
         panel.add(exitButton);
         panel.add(tutorialButton);
+        ImageIcon icon = new ImageIcon("background.jpg");
+        this.setIconImage(icon.getImage());
         this.add(panel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600,800);
         this.setTitle("Menu");
         this.setLocationRelativeTo(null);
+
         setVisible(true);
         
 }
@@ -59,13 +59,9 @@ public class MenuFrame extends JFrame implements ActionListener{
 
 
             }
-
-            //exit the running Process when exit button is clicked
             else if(e.getSource() == tutorialButton){
                 System.exit(0);
             }
-
-            //Opens the rules of the game when tutorial button is clicked
             else if(e.getSource() ==  exitButton){
                 //code for tutorial 
                 System.out.println("Tutorial");
